@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (0, uint256("0x00000728d4bf5d90dccac8db95522d0b98ce50660741fd74d2712c6ce5106602"));
+        (0, uint256("0x0000013ae688cfb3702d5e7b5da4c873d80c478e93e8aa297bf583a9d342a4fc"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1516792852, // * UNIX timestamp of last checkpoint block
@@ -134,7 +134,7 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetTimespan = 24 * 60 * 60; // PBS: 1 day
-        nTargetSpacing = 5 * 60;  // PBS: 5 minutes
+        nTargetSpacing = 90;// 1,5 minutes //5 * 60;  // PBS: 5 minutes
         nLastPOWBlock = 10000;
         nMaturity = 100;
         nMasternodeCountDrift = 20;
@@ -152,7 +152,7 @@ public:
 
               vMerkleTree:  444ab5ec2a391b3d2125abb8bd3b121a8ed4705f9782526d79150f64fbac9c26
          */
-        const char* pszTimestamp = "U.S. News & World Report Jan. 19, 2018 Shutdown Standoff Continues as Spending Bill Loses Support in the Senate";
+        const char* pszTimestamp = "test BPS coin 04.04.2018";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -163,20 +163,23 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1516792852;
+        genesis.nTime = 1522745996;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 6837474;
+        genesis.nNonce = 6911063;
 
-//        MineGenesis(genesis);
+	//MineGenesis(genesis);
 
-//        std::cout << genesis.ToString() << std::endl;
+        //std::cout << genesis.ToString() << std::endl;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000728d4bf5d90dccac8db95522d0b98ce50660741fd74d2712c6ce5106602"));
-        assert(genesis.hashMerkleRoot == uint256("0x444ab5ec2a391b3d2125abb8bd3b121a8ed4705f9782526d79150f64fbac9c26"));
+        assert(hashGenesisBlock == uint256("0x0000013ae688cfb3702d5e7b5da4c873d80c478e93e8aa297bf583a9d342a4fc"));
+        assert(genesis.hashMerkleRoot == uint256("0xab6e6356e7c1b5daa1993b921797b51aa92ff37f2959f31378fc799a1b303238"));
 
-        vSeeds.push_back(CDNSSeedData("45.76.143.123", "45.76.143.123"));
-        vSeeds.push_back(CDNSSeedData("45.77.255.46", "45.77.255.46"));
+	vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("192.168.10.228", "192.168.10.228"));
+//        vSeeds.push_back(CDNSSeedData("45.76.143.123", "45.76.143.123"));
+//        vSeeds.push_back(CDNSSeedData("45.77.255.46", "45.77.255.46"));
+//	vSeeds.clear();
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
@@ -308,16 +311,17 @@ public:
         nTargetTimespan = 24 * 60 * 60; // PBS: 1 day
         nTargetSpacing = 1 * 60;        // PBS: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1454124731;
+        genesis.nTime = 15227459967;
         genesis.nBits = 0x207fffff;
-        genesis.nNonce = 327875;
+        genesis.nNonce = 459590;
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 51476;
 
-//        MineGenesis(genesis);
+//	MineGenesis(genesis);
+//        std::cout << genesis.ToString() << std::endl;
 
-        assert(hashGenesisBlock == uint256("0x0000054925a7c4def590919e57a01857e8e42831e91acf78ac5223390cf9d80f"));
+        assert(hashGenesisBlock == uint256("0x0000093af728a1f2500f4333d95f86c34d514169337327c11472c26f917a3009"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
